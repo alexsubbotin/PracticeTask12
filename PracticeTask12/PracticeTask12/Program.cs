@@ -13,8 +13,9 @@ namespace PracticeTask12
         // Student: Alexey Subbtoin. Group: SE-17-1.
         static void Main(string[] args)
         {
-            //DemonstrateSorted();
+            DemonstrateSorted();
             DemonstrateReverseSorted();
+            DemonstrateUnsorted();
 
             Console.ReadLine();
         }
@@ -45,8 +46,7 @@ namespace PracticeTask12
             foreach (int a in sortedClone)
                 Console.Write(a + " ");
             Console.WriteLine();
-            Console.WriteLine("The number of swaps: {0}\nThe number of compares: {1}", bubbleNumOfSwaps, bubbleNumOfCompares);
-            Console.WriteLine();
+            Console.WriteLine("The number of swaps: {0}\nThe number of compares: {1}\n", bubbleNumOfSwaps, bubbleNumOfCompares);
 
             // Sorting heap.
             sortedClone = CloneArray(sortedOrig);
@@ -56,7 +56,7 @@ namespace PracticeTask12
             foreach (int a in sortedClone)
                 Console.Write(a + " ");
             Console.WriteLine();
-            Console.WriteLine("The number of swaps: {0}\nThe number of compares: {1}", heapNumOfSwaps, heapNumOfCompares);
+            Console.WriteLine("The number of swaps: {0}\nThe number of compares: {1}\n", heapNumOfSwaps, heapNumOfCompares);
         }
 
         // Methods comparing with a reverse sorted array.
@@ -85,8 +85,7 @@ namespace PracticeTask12
             foreach (int a in reverseClone)
                 Console.Write(a + " ");
             Console.WriteLine();
-            Console.WriteLine("The number of swaps: {0}\nThe number of compares: {1}", bubbleNumOfSwaps, bubbleNumOfCompares);
-            Console.WriteLine();
+            Console.WriteLine("The number of swaps: {0}\nThe number of compares: {1}\n", bubbleNumOfSwaps, bubbleNumOfCompares);
 
             // Sorting heap.
             reverseClone = CloneArray(reverseOrig);
@@ -96,7 +95,46 @@ namespace PracticeTask12
             foreach (int a in reverseClone)
                 Console.Write(a + " ");
             Console.WriteLine();
-            Console.WriteLine("The number of swaps: {0}\nThe number of compares: {1}", heapNumOfSwaps, heapNumOfCompares);
+            Console.WriteLine("The number of swaps: {0}\nThe number of compares: {1}\n", heapNumOfSwaps, heapNumOfCompares);
+        }
+
+        // Methods comparing with an unsorted array.
+        public static void DemonstrateUnsorted()
+        {
+            // Bubble sort characteristics.
+            int bubbleNumOfSwaps = 0;
+            int bubbleNumOfCompares = 0;
+
+            // Heapsort characteristics.
+            int heapNumOfSwaps = 0;
+            int heapNumOfCompares = 0;
+
+            // Unsorted array.
+            int[] unsortedOrig = CreateUnsortedArray();
+            Console.WriteLine("ORIGINAL UNSORTED SORTED ARRAY:");
+            foreach (int a in unsortedOrig)
+                Console.Write(a + " ");
+            Console.WriteLine("\n");
+
+            // Sorting bubble.
+            int[] unsortedClone = CloneArray(unsortedOrig);
+            BubbleSort(ref unsortedClone, ref bubbleNumOfSwaps, ref bubbleNumOfCompares);
+
+            Console.WriteLine("UNSORTED ARRAY AFTER BUBBLE SORTING:");
+            foreach (int a in unsortedClone)
+                Console.Write(a + " ");
+            Console.WriteLine();
+            Console.WriteLine("The number of swaps: {0}\nThe number of compares: {1}\n", bubbleNumOfSwaps, bubbleNumOfCompares);
+
+            // Sorting heap.
+            unsortedClone = CloneArray(unsortedOrig);
+            HeapSort(ref unsortedClone, ref heapNumOfSwaps, ref heapNumOfCompares);
+
+            Console.WriteLine("UNSORTED ARRAY AFTER HEAP SORTING:");
+            foreach (int a in unsortedClone)
+                Console.Write(a + " ");
+            Console.WriteLine();
+            Console.WriteLine("The number of swaps: {0}\nThe number of compares: {1}\n", heapNumOfSwaps, heapNumOfCompares);
         }
 
         // Bubble sort.
