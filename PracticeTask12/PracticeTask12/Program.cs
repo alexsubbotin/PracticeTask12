@@ -13,6 +13,15 @@ namespace PracticeTask12
         // Student: Alexey Subbtoin. Group: SE-17-1.
         static void Main(string[] args)
         {
+            //DemonstrateSorted();
+            DemonstrateReverseSorted();
+
+            Console.ReadLine();
+        }
+
+        // Methods comparing with a sorted array.
+        public static void DemonstrateSorted()
+        {
             // Bubble sort characteristics.
             int bubbleNumOfSwaps = 0;
             int bubbleNumOfCompares = 0;
@@ -48,8 +57,46 @@ namespace PracticeTask12
                 Console.Write(a + " ");
             Console.WriteLine();
             Console.WriteLine("The number of swaps: {0}\nThe number of compares: {1}", heapNumOfSwaps, heapNumOfCompares);
+        }
 
-            Console.ReadLine();
+        // Methods comparing with a reverse sorted array.
+        public static void DemonstrateReverseSorted()
+        {
+            // Bubble sort characteristics.
+            int bubbleNumOfSwaps = 0;
+            int bubbleNumOfCompares = 0;
+
+            // Heapsort characteristics.
+            int heapNumOfSwaps = 0;
+            int heapNumOfCompares = 0;
+
+            // Reverse sorted array.
+            int[] reverseOrig = CreateReverseSortedArray();
+            Console.WriteLine("ORIGINAL REVERSE SORTED ARRAY:");
+            foreach (int a in reverseOrig)
+                Console.Write(a + " ");
+            Console.WriteLine("\n");
+
+            // Sorting bubble.
+            int[] reverseClone = CloneArray(reverseOrig);
+            BubbleSort(ref reverseClone, ref bubbleNumOfSwaps, ref bubbleNumOfCompares);
+
+            Console.WriteLine("REVERSE SORTED ARRAY AFTER BUBBLE SORTING:");
+            foreach (int a in reverseClone)
+                Console.Write(a + " ");
+            Console.WriteLine();
+            Console.WriteLine("The number of swaps: {0}\nThe number of compares: {1}", bubbleNumOfSwaps, bubbleNumOfCompares);
+            Console.WriteLine();
+
+            // Sorting heap.
+            reverseClone = CloneArray(reverseOrig);
+            HeapSort(ref reverseClone, ref heapNumOfSwaps, ref heapNumOfCompares);
+
+            Console.WriteLine("REVERSE SORTED ARRAY AFTER HEAP SORTING:");
+            foreach (int a in reverseClone)
+                Console.Write(a + " ");
+            Console.WriteLine();
+            Console.WriteLine("The number of swaps: {0}\nThe number of compares: {1}", heapNumOfSwaps, heapNumOfCompares);
         }
 
         // Bubble sort.
