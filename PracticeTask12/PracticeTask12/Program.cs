@@ -14,5 +14,27 @@ namespace PracticeTask12
         static void Main(string[] args)
         {
         }
+
+        // Bubble sort.
+        public static void BubbleSort(int[] arr, ref int SwapCount, ref int CompareCount)
+        {
+            for(int i = 0; i < arr.Length; i++)
+            {
+                for(int j = 0; i < arr.Length - i - 1; j++)
+                {
+                    // Increasing the number of compares.
+                    CompareCount++;
+                    if(arr[j] > arr[j + 1])
+                    {
+                        int buf = arr[j];
+                        arr[j] = arr[j + 1];
+                        arr[j + 1] = buf;
+
+                        // Increasing the number of swaps.
+                        SwapCount++;
+                    }
+                }
+            }
+        }
     }
 }
