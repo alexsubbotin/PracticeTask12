@@ -13,6 +13,13 @@ namespace PracticeTask12
         // Student: Alexey Subbtoin. Group: SE-17-1.
         static void Main(string[] args)
         {
+            // Bubble sort characteristics.
+            int bubbleNumOfSwaps = 0;
+            int bubbleNumOfCompares = 0;
+
+            // Heapsort characteristics.
+            int heapNumOfSwaps = 0;
+            int heapNumOfComapres = 0;
         }
 
         // Bubble sort.
@@ -145,6 +152,17 @@ namespace PracticeTask12
             }
 
             return arr;
+        }
+
+        // Method to clone an array.
+        public static int[] CloneArray(int[] arr)
+        {
+            int[] clone = new int[arr.Length];
+
+            for (int i = 0; i < arr.Length; i++)
+                clone[i] = arr[i];
+
+            return clone;
         }
     }
 }
