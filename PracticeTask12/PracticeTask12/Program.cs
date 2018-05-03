@@ -105,5 +105,14 @@ namespace PracticeTask12
             a = b;
             b = buf;
         }
+
+        public static Random rnd = new Random();
+        // Method to create a sorted array.
+        public static int[] CreateSortedArray()
+        {
+            int[] arr = new int[rnd.Next(3, 21)];
+
+
+        }
     }
 }
