@@ -27,9 +27,7 @@ namespace PracticeTask12
 
                     if(arr[j] > arr[j + 1])
                     {
-                        int buf = arr[j];
-                        arr[j] = arr[j + 1];
-                        arr[j + 1] = buf;
+                        Swap(ref arr[j], ref arr[j + 1]);
 
                         // Increasing the number of swaps.
                         SwapCount++;
@@ -52,9 +50,7 @@ namespace PracticeTask12
             // Step 2: sorting.
             for(int i = arr.Length - 1; i > 0; i--)
             {
-                int buf = arr[i];
-                arr[i] = arr[0];
-                buf = arr[0];
+                Swap(ref arr[i], ref arr[0]);
 
                 int k = 0;
                 int prev = -1;
@@ -86,15 +82,20 @@ namespace PracticeTask12
 
             if(arr[elemIndex] < arr[imax])
             {
-                int buf = arr[elemIndex];
-                arr[elemIndex] = arr[imax];
-                arr[imax] = buf;
+                Swap(ref arr[elemIndex], ref arr[imax]);
 
                 if (imax < arr.Length / 2)
                     elemIndex = imax;
             }
 
             return elemIndex;
+        }
+
+        public static void Swap(ref int a, ref int b)
+        {
+            int buf = a;
+            a = b;
+            b = buf;
         }
     }
 }
