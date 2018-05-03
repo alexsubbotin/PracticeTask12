@@ -19,7 +19,37 @@ namespace PracticeTask12
 
             // Heapsort characteristics.
             int heapNumOfSwaps = 0;
-            int heapNumOfComapres = 0;
+            int heapNumOfCompares = 0;
+
+            // Sorted array.
+            int[] sortedOrig = CreateSortedArray();
+            Console.WriteLine("ORIGINAL SORTED ARRAY:");
+            foreach (int a in sortedOrig)
+                Console.Write(a + " ");
+            Console.WriteLine("\n");
+
+            // Sorting bubble.
+            int[] sortedClone = CloneArray(sortedOrig);
+            BubbleSort(ref sortedClone, ref bubbleNumOfSwaps, ref bubbleNumOfCompares);
+
+            Console.WriteLine("SORTED ARRAY AFTER BUBBLE SORTING:");
+            foreach (int a in sortedClone)
+                Console.Write(a + " ");
+            Console.WriteLine();
+            Console.WriteLine("The number of swaps: {0}\nThe number of compares: {1}", bubbleNumOfSwaps, bubbleNumOfCompares);
+            Console.WriteLine();
+
+            // Sorting heap.
+            sortedClone = CloneArray(sortedOrig);
+            HeapSort(ref sortedClone, ref heapNumOfSwaps, ref heapNumOfCompares);
+
+            Console.WriteLine("SORTED ARRAY AFTER HEAP SORTING:");
+            foreach (int a in sortedClone)
+                Console.Write(a + " ");
+            Console.WriteLine();
+            Console.WriteLine("The number of swaps: {0}\nThe number of compares: {1}", heapNumOfSwaps, heapNumOfCompares);
+
+            Console.ReadLine();
         }
 
         // Bubble sort.
@@ -27,7 +57,7 @@ namespace PracticeTask12
         {
             for(int i = 0; i < arr.Length; i++)
             {
-                for(int j = 0; i < arr.Length - i - 1; j++)
+                for(int j = 0; j < arr.Length - i - 1; j++)
                 {
                     // Increasing the number of compares.
                     CompareCount++;
@@ -47,10 +77,10 @@ namespace PracticeTask12
         public static void HeapSort(ref int[] arr, ref int SwapCount, ref int CompareCount)
         {
             // Step 1: creating a pyramid.
-            for(int i = arr.Length / 2 - 1; i >=0; i--)
+            for(int i = arr.Length / 2 - 1; i >= 0; i--)
             {
                 int prev = i;
-                i = AddToPyramid(arr, i, ref SwapCount, ref CompareCount);
+                i = AddToPyramid(ref arr, i, arr.Length, ref SwapCount, ref CompareCount);
                 if (prev != i)
                     ++i;
             }
@@ -67,29 +97,29 @@ namespace PracticeTask12
                 while(k != prev)
                 {
                     prev = k;
-                    k = AddToPyramid(arr, k, ref SwapCount, ref CompareCount);
+                    k = AddToPyramid(ref arr, k, i, ref SwapCount, ref CompareCount);
                 }
             }
         }
 
         // Method to add an element to the pyramid.
-        public static int AddToPyramid(int[] arr, int elemIndex, ref int SwapCount, ref int CompareCount)
+        public static int AddToPyramid(ref int[] arr, int elemIndex, int size, ref int SwapCount, ref int CompareCount)
         {
             int imax;
 
-            if (2 * elemIndex + 2 < arr.Length)
+            if (2 * elemIndex + 2 < size)
             {
                 if (arr[2 * elemIndex + 1] < arr[2 * elemIndex + 2])
-                    imax = arr[2 * elemIndex + 2];
+                    imax = 2 * elemIndex + 2;
                 else
-                    imax = arr[2 * elemIndex + 1];
+                    imax = 2 * elemIndex + 1;
 
                 CompareCount++;
             }
             else
                 imax = 2 * elemIndex + 1;
 
-            if (imax >= arr.Length)
+            if (imax >= size)
                 return elemIndex;
 
             CompareCount++;
@@ -98,7 +128,7 @@ namespace PracticeTask12
                 Swap(ref arr[elemIndex], ref arr[imax]);
                 SwapCount++;
 
-                if (imax < arr.Length / 2)
+                if (imax < size / 2)
                     elemIndex = imax;
             }
 
