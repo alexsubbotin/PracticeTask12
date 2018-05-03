@@ -133,5 +133,18 @@ namespace PracticeTask12
 
             return arr;
         }
+
+        // Method to create an unsorted array.
+        public static int[] CreateUnsortedArray()
+        {
+            int[] arr = new int[rnd.Next(3, 21)];
+
+            for(int i = 0; i < arr.Length; i++)
+            {
+                arr[i] = rnd.Next(-50, 51);
+            }
+
+            return arr;
+        }
     }
 }
