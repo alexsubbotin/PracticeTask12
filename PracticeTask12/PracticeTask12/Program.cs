@@ -36,13 +36,14 @@ namespace PracticeTask12
             }
         }
 
+        // Heapsort.
         public static void HeapSort(ref int[] arr, ref int SwapCount, ref int CompareCount)
         {
             // Step 1: creating a pyramid.
             for(int i = arr.Length / 2 - 1; i >=0; i--)
             {
                 int prev = i;
-                i = AddToPyramid(arr, i);
+                i = AddToPyramid(arr, i, ref SwapCount, ref CompareCount);
                 if (prev != i)
                     ++i;
             }
@@ -50,6 +51,7 @@ namespace PracticeTask12
             // Step 2: sorting.
             for(int i = arr.Length - 1; i > 0; i--)
             {
+                SwapCount++;
                 Swap(ref arr[i], ref arr[0]);
 
                 int k = 0;
@@ -58,12 +60,13 @@ namespace PracticeTask12
                 while(k != prev)
                 {
                     prev = k;
-                    k = AddToPyramid(arr, k);
+                    k = AddToPyramid(arr, k, ref SwapCount, ref CompareCount);
                 }
             }
         }
 
-        public static int AddToPyramid(int[] arr, int elemIndex)
+        // Method to add an element to the pyramid.
+        public static int AddToPyramid(int[] arr, int elemIndex, ref int SwapCount, ref int CompareCount)
         {
             int imax;
 
@@ -73,6 +76,8 @@ namespace PracticeTask12
                     imax = arr[2 * elemIndex + 2];
                 else
                     imax = arr[2 * elemIndex + 1];
+
+                CompareCount++;
             }
             else
                 imax = 2 * elemIndex + 1;
@@ -80,9 +85,11 @@ namespace PracticeTask12
             if (imax >= arr.Length)
                 return elemIndex;
 
+            CompareCount++;
             if(arr[elemIndex] < arr[imax])
             {
                 Swap(ref arr[elemIndex], ref arr[imax]);
+                SwapCount++;
 
                 if (imax < arr.Length / 2)
                     elemIndex = imax;
@@ -91,6 +98,7 @@ namespace PracticeTask12
             return elemIndex;
         }
 
+        // Swap method.
         public static void Swap(ref int a, ref int b)
         {
             int buf = a;
