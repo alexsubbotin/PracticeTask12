@@ -107,12 +107,31 @@ namespace PracticeTask12
         }
 
         public static Random rnd = new Random();
+
         // Method to create a sorted array.
         public static int[] CreateSortedArray()
         {
             int[] arr = new int[rnd.Next(3, 21)];
 
+            for(int i = 0; i < arr.Length; i++)
+            {
+                arr[i] = i;
+            }
 
+            return arr;
+        }
+
+        // Method to create a reverse sorted array.
+        public static int[] CreateReverseSortedArray()
+        {
+            int[] arr = new int[rnd.Next(3, 21)];
+
+            for(int i = 0; i < arr.Length; i++)
+            {
+                arr[i] = arr.Length - i - 1;
+            }
+
+            return arr;
         }
     }
 }
